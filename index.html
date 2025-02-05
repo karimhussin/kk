@@ -376,23 +376,10 @@
                     </style>
                 </head>
                 <body>
-                    <video id="fullscreenVideo-${index}" autoplay muted loop controls playsinline>
+                    <video autoplay muted loop controls playsinline>
                         <source src="${url}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <script>
-                        // طلب وضع ملء الشاشة عند تحميل الصفحة
-                        const video = document.getElementById('fullscreenVideo-${index}');
-                        if (video.requestFullscreen) {
-                            video.requestFullscreen();
-                        } else if (video.mozRequestFullScreen) { // Firefox
-                            video.mozRequestFullScreen();
-                        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                            video.webkitRequestFullscreen();
-                        } else if (video.msRequestFullscreen) { // IE/Edge
-                            video.msRequestFullscreen();
-                        }
-                    <\/script>
                 </body>
                 </html>
             `);
@@ -409,7 +396,7 @@
 
             // إذا كان الفيديو يعمل في نافذة جديدة
             if (openWindows[index]) {
-                const videoElement = openWindows[index].document.getElementById(`fullscreenVideo-${index}`);
+                const videoElement = openWindows[index].document.querySelector('video');
                 if (videoElement) {
                     if (isPaused) {
                         videoElement.play(); // تشغيل الفيديو
